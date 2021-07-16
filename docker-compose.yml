@@ -1,0 +1,21 @@
+version: "3.9"
+   
+services:
+  yclas:
+    build: .
+    ports:
+      - "8000:80"
+    depends_on: 
+      - db
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pw
+      MYSQL_DATABASE: yclas_db
+      MYSQL_USER: yclas
+      MYSQL_PASSWORD: pw
+      MYSQL_PORT_3306_TCP_ADDR: mysql
+      MYSQL_PORT_3306_TCP_PORT: 3306
+    
